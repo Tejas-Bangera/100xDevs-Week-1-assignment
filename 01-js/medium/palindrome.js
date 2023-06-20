@@ -7,7 +7,18 @@
 */
 
 function isPalindrome(str) {
+  const newStr = str.toLowerCase();
+
+  let start = 0,
+    end = str.length - 1;
+
+  while (start < end) {
+    if (newStr[start++] != newStr[end--]) return false;
+  }
+
   return true;
 }
+
+// console.log(isPalindrome("Tejas"));
 
 module.exports = isPalindrome;

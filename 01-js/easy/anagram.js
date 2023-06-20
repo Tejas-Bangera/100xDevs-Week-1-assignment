@@ -8,7 +8,26 @@
 */
 
 function isAnagram(str1, str2) {
+  // Base case
+  if (str1.length !== str2.length) return false;
 
+  const obj1 = str1.split("").reduce((acc, character) => {
+    acc[character] = acc[character] ? acc[character] + 1 : 1;
+    return acc;
+  }, {});
+
+  const obj2 = str2.split("").reduce((acc, character) => {
+    acc[character] = acc[character] ? acc[character] + 1 : 1;
+    return acc;
+  }, {});
+
+  for (const key in obj1) {
+    if (!obj2[key] || obj1[key] !== obj2[key]) return false;
+  }
+
+  return true;
 }
+
+// console.log(isAnagram("Hello", "elloH"));
 
 module.exports = isAnagram;

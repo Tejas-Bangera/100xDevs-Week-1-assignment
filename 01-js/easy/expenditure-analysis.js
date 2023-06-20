@@ -9,7 +9,45 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  const resultObj = transactions.reduce((acc, transaction) => {
+    acc[transaction.category] = acc[transaction.category]
+      ? acc[transaction.category] + transaction.price
+      : transaction.price;
+
+    return acc;
+  }, {});
+
+  return Object.keys(resultObj).map((category) => {
+    return { [category]: resultObj[category] };
+  });
 }
+const transactions = [
+  {
+    itemName: "Puma",
+    category: "Shoe",
+    price: 200,
+    timeStamp: new Date(),
+  },
+  {
+    itemName: "Nike",
+    category: "Shoe",
+    price: 300,
+    timeStamp: new Date(),
+  },
+  {
+    itemName: "Perfomax",
+    category: "T-shirt",
+    price: 100,
+    timeStamp: new Date(),
+  },
+  {
+    itemName: "Pan",
+    category: "Kitchen",
+    price: 250,
+    timeStamp: new Date(),
+  },
+];
+
+// console.log(calculateTotalSpentByCategory(transactions));
 
 module.exports = calculateTotalSpentByCategory;
